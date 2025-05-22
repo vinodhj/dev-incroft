@@ -26,3 +26,13 @@ dist-ssr
 # wrangler files
 .wrangler
 .dev.vars*
+
+.env
+.env.main
+
+backup-dnd
+local
+
+coverage
+jest-report
+bundle-report
