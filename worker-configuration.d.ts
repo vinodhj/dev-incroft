@@ -289,12 +289,12 @@ interface ServiceWorkerGlobalScope extends WorkerGlobalScope {
 declare function addEventListener<Type extends keyof WorkerGlobalScopeEventMap>(
   type: Type,
   handler: EventListenerOrEventListenerObject<WorkerGlobalScopeEventMap[Type]>,
-  options?: EventTargetAddEventListenerOptions | boolean
+  options?: EventTargetAddEventListenerOptions | boolean,
 ): void;
 declare function removeEventListener<Type extends keyof WorkerGlobalScopeEventMap>(
   type: Type,
   handler: EventListenerOrEventListenerObject<WorkerGlobalScopeEventMap[Type]>,
-  options?: EventTargetEventListenerOptions | boolean
+  options?: EventTargetEventListenerOptions | boolean,
 ): void;
 /**
  * Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
@@ -362,24 +362,24 @@ interface ExecutionContext {
 type ExportedHandlerFetchHandler<Env = unknown, CfHostMetadata = unknown> = (
   request: Request<CfHostMetadata, IncomingRequestCfProperties<CfHostMetadata>>,
   env: Env,
-  ctx: ExecutionContext
+  ctx: ExecutionContext,
 ) => Response | Promise<Response>;
 type ExportedHandlerTailHandler<Env = unknown> = (events: TraceItem[], env: Env, ctx: ExecutionContext) => void | Promise<void>;
 type ExportedHandlerTraceHandler<Env = unknown> = (traces: TraceItem[], env: Env, ctx: ExecutionContext) => void | Promise<void>;
 type ExportedHandlerTailStreamHandler<Env = unknown> = (
   event: TailStream.TailEvent,
   env: Env,
-  ctx: ExecutionContext
+  ctx: ExecutionContext,
 ) => TailStream.TailEventHandlerType | Promise<TailStream.TailEventHandlerType>;
 type ExportedHandlerScheduledHandler<Env = unknown> = (
   controller: ScheduledController,
   env: Env,
-  ctx: ExecutionContext
+  ctx: ExecutionContext,
 ) => void | Promise<void>;
 type ExportedHandlerQueueHandler<Env = unknown, Message = unknown> = (
   batch: MessageBatch<Message>,
   env: Env,
-  ctx: ExecutionContext
+  ctx: ExecutionContext,
 ) => void | Promise<void>;
 type ExportedHandlerTestHandler<Env = unknown> = (controller: TestController, env: Env, ctx: ExecutionContext) => void | Promise<void>;
 interface ExportedHandler<Env = unknown, QueueHandlerMessage = unknown, CfHostMetadata = unknown> {
@@ -405,7 +405,7 @@ declare abstract class PromiseRejectionEvent extends Event {
 declare abstract class Navigator {
   sendBeacon(
     url: string,
-    body?: ReadableStream | string | (ArrayBuffer | ArrayBufferView) | Blob | FormData | URLSearchParams | URLSearchParams
+    body?: ReadableStream | string | (ArrayBuffer | ArrayBufferView) | Blob | FormData | URLSearchParams | URLSearchParams,
   ): boolean;
   readonly userAgent: string;
   readonly hardwareConcurrency: number;
@@ -708,7 +708,7 @@ declare class EventTarget<EventMap extends Record<string, Event> = Record<string
   addEventListener<Type extends keyof EventMap>(
     type: Type,
     handler: EventListenerOrEventListenerObject<EventMap[Type]>,
-    options?: EventTargetAddEventListenerOptions | boolean
+    options?: EventTargetAddEventListenerOptions | boolean,
   ): void;
   /**
    * Removes the event listener in target's event listener list with the same type, callback, and options.
@@ -718,7 +718,7 @@ declare class EventTarget<EventMap extends Record<string, Event> = Record<string
   removeEventListener<Type extends keyof EventMap>(
     type: Type,
     handler: EventListenerOrEventListenerObject<EventMap[Type]>,
-    options?: EventTargetEventListenerOptions | boolean
+    options?: EventTargetEventListenerOptions | boolean,
   ): void;
   /**
    * Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
@@ -901,7 +901,7 @@ declare abstract class Crypto {
   get subtle(): SubtleCrypto;
   /* [MDN Reference](https://developer.mozilla.org/docs/Web/API/Crypto/getRandomValues) */
   getRandomValues<T extends Int8Array | Uint8Array | Int16Array | Uint16Array | Int32Array | Uint32Array | BigInt64Array | BigUint64Array>(
-    buffer: T
+    buffer: T,
   ): T;
   /**
    * Available only in secure contexts.
@@ -924,7 +924,7 @@ declare abstract class SubtleCrypto {
   decrypt(
     algorithm: string | SubtleCryptoEncryptAlgorithm,
     key: CryptoKey,
-    cipherText: ArrayBuffer | ArrayBufferView
+    cipherText: ArrayBuffer | ArrayBufferView,
   ): Promise<ArrayBuffer>;
   /* [MDN Reference](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/sign) */
   sign(algorithm: string | SubtleCryptoSignAlgorithm, key: CryptoKey, data: ArrayBuffer | ArrayBufferView): Promise<ArrayBuffer>;
@@ -933,7 +933,7 @@ declare abstract class SubtleCrypto {
     algorithm: string | SubtleCryptoSignAlgorithm,
     key: CryptoKey,
     signature: ArrayBuffer | ArrayBufferView,
-    data: ArrayBuffer | ArrayBufferView
+    data: ArrayBuffer | ArrayBufferView,
   ): Promise<boolean>;
   /* [MDN Reference](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/digest) */
   digest(algorithm: string | SubtleCryptoHashAlgorithm, data: ArrayBuffer | ArrayBufferView): Promise<ArrayBuffer>;
@@ -941,7 +941,7 @@ declare abstract class SubtleCrypto {
   generateKey(
     algorithm: string | SubtleCryptoGenerateKeyAlgorithm,
     extractable: boolean,
-    keyUsages: string[]
+    keyUsages: string[],
   ): Promise<CryptoKey | CryptoKeyPair>;
   /* [MDN Reference](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveKey) */
   deriveKey(
@@ -949,7 +949,7 @@ declare abstract class SubtleCrypto {
     baseKey: CryptoKey,
     derivedKeyAlgorithm: string | SubtleCryptoImportKeyAlgorithm,
     extractable: boolean,
-    keyUsages: string[]
+    keyUsages: string[],
   ): Promise<CryptoKey>;
   /* [MDN Reference](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/deriveBits) */
   deriveBits(algorithm: string | SubtleCryptoDeriveKeyAlgorithm, baseKey: CryptoKey, length?: number | null): Promise<ArrayBuffer>;
@@ -959,7 +959,7 @@ declare abstract class SubtleCrypto {
     keyData: (ArrayBuffer | ArrayBufferView) | JsonWebKey,
     algorithm: string | SubtleCryptoImportKeyAlgorithm,
     extractable: boolean,
-    keyUsages: string[]
+    keyUsages: string[],
   ): Promise<CryptoKey>;
   /* [MDN Reference](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/exportKey) */
   exportKey(format: string, key: CryptoKey): Promise<ArrayBuffer | JsonWebKey>;
@@ -968,7 +968,7 @@ declare abstract class SubtleCrypto {
     format: string,
     key: CryptoKey,
     wrappingKey: CryptoKey,
-    wrapAlgorithm: string | SubtleCryptoEncryptAlgorithm
+    wrapAlgorithm: string | SubtleCryptoEncryptAlgorithm,
   ): Promise<ArrayBuffer>;
   /* [MDN Reference](https://developer.mozilla.org/docs/Web/API/SubtleCrypto/unwrapKey) */
   unwrapKey(
@@ -978,7 +978,7 @@ declare abstract class SubtleCrypto {
     unwrapAlgorithm: string | SubtleCryptoEncryptAlgorithm,
     unwrappedKeyAlgorithm: string | SubtleCryptoImportKeyAlgorithm,
     extractable: boolean,
-    keyUsages: string[]
+    keyUsages: string[],
   ): Promise<CryptoKey>;
   timingSafeEqual(a: ArrayBuffer | ArrayBufferView, b: ArrayBuffer | ArrayBufferView): boolean;
 }
@@ -1409,7 +1409,7 @@ declare var Request: {
   prototype: Request;
   new <CfHostMetadata = unknown, Cf = CfProperties<CfHostMetadata>>(
     input: RequestInfo<CfProperties> | URL,
-    init?: RequestInit<Cf>
+    init?: RequestInit<Cf>,
   ): Request<CfHostMetadata, Cf>;
 };
 /**
@@ -1533,50 +1533,50 @@ interface KVNamespace<Key extends string = string> {
   put(key: Key, value: string | ArrayBuffer | ArrayBufferView | ReadableStream, options?: KVNamespacePutOptions): Promise<void>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    options?: Partial<KVNamespaceGetOptions<undefined>>
+    options?: Partial<KVNamespaceGetOptions<undefined>>,
   ): Promise<KVNamespaceGetWithMetadataResult<string, Metadata>>;
   getWithMetadata<Metadata = unknown>(key: Key, type: 'text'): Promise<KVNamespaceGetWithMetadataResult<string, Metadata>>;
   getWithMetadata<ExpectedValue = unknown, Metadata = unknown>(
     key: Key,
-    type: 'json'
+    type: 'json',
   ): Promise<KVNamespaceGetWithMetadataResult<ExpectedValue, Metadata>>;
   getWithMetadata<Metadata = unknown>(key: Key, type: 'arrayBuffer'): Promise<KVNamespaceGetWithMetadataResult<ArrayBuffer, Metadata>>;
   getWithMetadata<Metadata = unknown>(key: Key, type: 'stream'): Promise<KVNamespaceGetWithMetadataResult<ReadableStream, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    options: KVNamespaceGetOptions<'text'>
+    options: KVNamespaceGetOptions<'text'>,
   ): Promise<KVNamespaceGetWithMetadataResult<string, Metadata>>;
   getWithMetadata<ExpectedValue = unknown, Metadata = unknown>(
     key: Key,
-    options: KVNamespaceGetOptions<'json'>
+    options: KVNamespaceGetOptions<'json'>,
   ): Promise<KVNamespaceGetWithMetadataResult<ExpectedValue, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    options: KVNamespaceGetOptions<'arrayBuffer'>
+    options: KVNamespaceGetOptions<'arrayBuffer'>,
   ): Promise<KVNamespaceGetWithMetadataResult<ArrayBuffer, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    options: KVNamespaceGetOptions<'stream'>
+    options: KVNamespaceGetOptions<'stream'>,
   ): Promise<KVNamespaceGetWithMetadataResult<ReadableStream, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Array<Key>,
-    type: 'text'
+    type: 'text',
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<string, Metadata>>>;
   getWithMetadata<ExpectedValue = unknown, Metadata = unknown>(
     key: Array<Key>,
-    type: 'json'
+    type: 'json',
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<ExpectedValue, Metadata>>>;
   getWithMetadata<Metadata = unknown>(
     key: Array<Key>,
-    options?: Partial<KVNamespaceGetOptions<undefined>>
+    options?: Partial<KVNamespaceGetOptions<undefined>>,
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<string, Metadata>>>;
   getWithMetadata<Metadata = unknown>(
     key: Array<Key>,
-    options?: KVNamespaceGetOptions<'text'>
+    options?: KVNamespaceGetOptions<'text'>,
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<string, Metadata>>>;
   getWithMetadata<ExpectedValue = unknown, Metadata = unknown>(
     key: Array<Key>,
-    options?: KVNamespaceGetOptions<'json'>
+    options?: KVNamespaceGetOptions<'json'>,
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<ExpectedValue, Metadata>>>;
   delete(key: Key): Promise<void>;
 }
@@ -1660,7 +1660,7 @@ declare abstract class R2Bucket {
     key: string,
     options: R2GetOptions & {
       onlyIf: R2Conditional | Headers;
-    }
+    },
   ): Promise<R2ObjectBody | R2Object | null>;
   get(key: string, options?: R2GetOptions): Promise<R2ObjectBody | null>;
   put(
@@ -1668,7 +1668,7 @@ declare abstract class R2Bucket {
     value: ReadableStream | ArrayBuffer | ArrayBufferView | string | null | Blob,
     options?: R2PutOptions & {
       onlyIf: R2Conditional | Headers;
-    }
+    },
   ): Promise<R2Object | null>;
   put(key: string, value: ReadableStream | ArrayBuffer | ArrayBufferView | string | null | Blob, options?: R2PutOptions): Promise<R2Object>;
   createMultipartUpload(key: string, options?: R2MultipartOptions): Promise<R2MultipartUpload>;
@@ -1682,7 +1682,7 @@ interface R2MultipartUpload {
   uploadPart(
     partNumber: number,
     value: ReadableStream | (ArrayBuffer | ArrayBufferView) | string | Blob,
-    options?: R2UploadPartOptions
+    options?: R2UploadPartOptions,
   ): Promise<R2UploadedPart>;
   abort(): Promise<void>;
   complete(uploadedParts: R2UploadedPart[]): Promise<R2Object>;
@@ -3882,7 +3882,7 @@ declare abstract class Ai<AiModelList extends AiModelListType = AiModels> {
   run<Name extends keyof AiModelList, Options extends AiOptions>(
     model: Name,
     inputs: AiModelList[Name]['inputs'],
-    options?: Options
+    options?: Options,
   ): Promise<
     Options extends {
       returnRawResponse: true;
@@ -3899,7 +3899,7 @@ declare abstract class Ai<AiModelList extends AiModelListType = AiModels> {
     options?: {
       gateway?: GatewayOptions;
       extraHeaders?: object;
-    }
+    },
   ): Promise<ConversionResponse[]>;
   toMarkdown(
     files: {
@@ -3909,7 +3909,7 @@ declare abstract class Ai<AiModelList extends AiModelListType = AiModels> {
     options?: {
       gateway?: GatewayOptions;
       extraHeaders?: object;
-    }
+    },
   ): Promise<ConversionResponse>;
 }
 type GatewayRetries = {
@@ -4021,7 +4021,7 @@ declare abstract class AiGateway {
     options?: {
       gateway?: GatewayOptions;
       extraHeaders?: object;
-    }
+    },
   ): Promise<Response>;
   getUrl(provider?: AIGatewayProviders | string): Promise<string>; // eslint-disable-line
 }
@@ -5221,7 +5221,7 @@ declare abstract class EmailEvent extends ExtendableEvent {
 declare type EmailExportedHandler<Env = unknown> = (
   message: ForwardableEmailMessage,
   env: Env,
-  ctx: ExecutionContext
+  ctx: ExecutionContext,
 ) => void | Promise<void>;
 declare module 'cloudflare:email' {
   let _EmailMessage: {
@@ -5428,7 +5428,7 @@ type EventContext<Env, P extends string, Data> = {
   data: Data;
 };
 type PagesFunction<Env = unknown, Params extends string = any, Data extends Record<string, unknown> = Record<string, unknown>> = (
-  context: EventContext<Env, Params, Data>
+  context: EventContext<Env, Params, Data>,
 ) => Response | Promise<Response>;
 type EventPluginContext<Env, P extends string, Data, PluginArgs> = {
   request: Request<unknown, IncomingRequestCfProperties<unknown>>;
@@ -5449,7 +5449,7 @@ type PagesPluginFunction<
   Env = unknown,
   Params extends string = any,
   Data extends Record<string, unknown> = Record<string, unknown>,
-  PluginArgs = unknown
+  PluginArgs = unknown,
 > = (context: EventPluginContext<Env, Params, Data, PluginArgs>) => Response | Promise<Response>;
 declare module 'assets:*' {
   export const onRequest: PagesFunction;
@@ -5461,7 +5461,7 @@ declare module 'cloudflare:pipelines' {
   export abstract class PipelineTransformationEntrypoint<
     Env = unknown,
     I extends PipelineRecord = PipelineRecord,
-    O extends PipelineRecord = PipelineRecord
+    O extends PipelineRecord = PipelineRecord,
   > {
     protected env: Env;
     protected ctx: ExecutionContext;
@@ -5728,7 +5728,7 @@ declare module 'cloudflare:workers' {
       options: {
         type: string;
         timeout?: WorkflowTimeoutDuration | number;
-      }
+      },
     ): Promise<WorkflowStepEvent<T>>;
   }
   export abstract class WorkflowEntrypoint<Env = unknown, T extends Rpc.Serializable<T> | unknown = unknown>
@@ -6235,7 +6235,7 @@ interface DispatchNamespace {
     args?: {
       [key: string]: any;
     },
-    options?: DynamicDispatchOptions
+    options?: DynamicDispatchOptions,
   ): Fetcher;
 }
 declare module 'cloudflare:workflows' {
