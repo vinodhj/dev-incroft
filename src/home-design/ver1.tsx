@@ -8,7 +8,6 @@ declare global {
   }
 }
 
-import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Container, Box, Chip } from '@mui/material';
 import { SupportAgentOutlined, WhatsApp } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -43,19 +42,6 @@ const theme = createTheme({
 });
 
 export default function DeityHomepage() {
-  const [platformAnchor, setPlatformAnchor] = React.useState(null);
-  const [useCasesAnchor, setUseCasesAnchor] = React.useState(null);
-  const [resourcesAnchor, setResourcesAnchor] = React.useState(null);
-  const [companyAnchor, setCompanyAnchor] = React.useState(null);
-
-  const handleMenuClick = (setter: any) => (event: any) => {
-    setter(event.currentTarget);
-  };
-
-  const handleMenuClose = (setter: any) => () => {
-    setter(null);
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -164,7 +150,7 @@ export default function DeityHomepage() {
               mx: 'auto',
             }}
           >
-            Pioneering Excellence in Rubber Trading, Manufurating & IT Solutions
+            Pioneering Excellence in Rubber Trading, Manufacturing & IT Solutions
           </Typography>
 
           <Typography

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Container, Typography, Card, CardContent, Button, Grid, Chip, Stack, Avatar, IconButton } from '@mui/material';
-import { Factory, Computer, ArrowForward, LocationOn, Business, Group, TrendingUp, WhatsApp, Schedule } from '@mui/icons-material';
+import { Box, Container, Typography, Card, CardContent, Button, Grid, Chip, Stack, Avatar } from '@mui/material';
+import { Factory, Computer, ArrowForward, WhatsApp } from '@mui/icons-material';
 import ScheduleButton from './ScheduleButton';
 
 interface DivisionCardProps {
@@ -157,7 +157,7 @@ const BusinessDivisions: React.FC = () => {
         'Signed supply agreements',
       ],
       buttonText: 'Explore Rubber Division',
-      onButtonClick: () => window.open('https://rubber.incroft.com', '_blank'),
+      onButtonClick: () => window.open('https://www.rubber.incroft.com', '_blank'),
       stats: [
         { label: 'Locations', value: '2+' },
         { label: 'Partners', value: '5+' },
@@ -178,7 +178,7 @@ const BusinessDivisions: React.FC = () => {
         'Startup innovation mindset',
       ],
       buttonText: 'Discover Tech Solutions',
-      onButtonClick: () => window.open('https://tech.incroft.com', '_blank'),
+      onButtonClick: () => window.open('https://www.tech.incroft.com', '_blank'),
       stats: [
         { label: 'Experience', value: '10+' },
         { label: 'Team Size', value: '15+' },
